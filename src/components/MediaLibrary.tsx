@@ -29,7 +29,7 @@ export function useUpload() {
 
 export function MediaThumb({ m, className }: { m: Pick<Media, 'mimeType' | 'url' | 'originalName' | 'alt'>; className?: string }) {
   if (m.mimeType.startsWith('image/'))
-    return <img src={m.url} alt={m.alt ?? m.originalName} loading="lazy" className={cn('h-full w-full object-cover', className)} />;
+    return <img src={m.url} alt={m.alt ?? m.originalName} loading="lazy" className={cn('h-full w-full', m.mimeType === 'image/svg+xml' ? 'object-contain p-4' : 'object-cover', className)} />;
   const Icon = m.mimeType.startsWith('video/') ? Film : FileText;
   return (
     <div className={cn('flex h-full w-full flex-col items-center justify-center gap-1 bg-paper text-muted', className)}>
@@ -96,14 +96,14 @@ export function MediaBrowser({
           />
         </div>
         {!kind && (
-          <Select className="w-36" value={type} onChange={(e) => { setType(e.target.value as MediaKind); setPage(1); }} aria-label="Jenis file">
+          <Select className="!w-36" value={type} onChange={(e) => { setType(e.target.value as MediaKind); setPage(1); }} aria-label="Jenis file">
             <option value="">Semua jenis</option>
             <option value="image">Gambar</option>
             <option value="video">Video</option>
             <option value="document">Dokumen</option>
           </Select>
         )}
-        <Select className="w-40" value={folder} onChange={(e) => { setFolder(e.target.value); setPage(1); }} aria-label="Folder">
+        <Select className="!w-44" value={folder} onChange={(e) => { setFolder(e.target.value); setPage(1); }} aria-label="Folder">
           <option value="">Semua folder</option>
           {folders?.map((f) => <option key={f} value={f}>{f}</option>)}
         </Select>

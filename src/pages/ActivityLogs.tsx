@@ -32,7 +32,7 @@ export default function ActivityLogs() {
             <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" />
             <Input placeholder="Cari pengguna atau keterangan…" className="pl-9" value={search} onChange={(e) => { setSearch(e.target.value); setPage(1); }} />
           </div>
-          <Select className="w-48" value={action} onChange={(e) => { setAction(e.target.value); setPage(1); }} aria-label="Jenis aksi">
+          <Select className="!w-48" value={action} onChange={(e) => { setAction(e.target.value); setPage(1); }} aria-label="Jenis aksi">
             <option value="">Semua aksi</option>
             {Object.entries(ACTIONS).map(([v, l]) => <option key={v} value={v}>{l}</option>)}
           </Select>

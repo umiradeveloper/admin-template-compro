@@ -74,6 +74,14 @@ export interface Media {
   folder: string;
   alt: string | null;
   createdAt: string;
+  updatedAt?: string;
+  storage?: 'local' | 'minio';
+}
+
+export interface MediaUsage {
+  path: string;
+  count: number;
+  items: { label: string; ref: string; title?: string; link: string }[];
 }
 
 export interface Inquiry {
