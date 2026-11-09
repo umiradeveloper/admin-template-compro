@@ -1,6 +1,6 @@
 # Umira CMS — Admin Panel (React + Vite + Tailwind)
 
-Panduan lengkap: lihat `../CMS-README.md`.
+Panduan lengkap: lihat `../../CMS-README.md`.
 
 ```bash
 cp .env.example .env     # VITE_API_URL = URL backend, VITE_SITE_URL = URL website
