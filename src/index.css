@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* palet: slate dari website Umira, teal untuk aksi, copper untuk penanda */
+  --color-ink: #1F2A2E;
+  --color-ink-2: #2A383D;
+  --color-ink-3: #3A4B51;
+  --color-paper: #F5F7F6;
+  --color-line: #DDE3E1;
+  --color-muted: #65767B;
+  --color-teal: #1E6B66;
+  --color-teal-600: #185853;
+  --color-teal-50: #E6F1EF;
+  --color-teal-200: #A9D2CC;
+  --color-copper: #B4693A;
+  --color-copper-50: #F7ECE4;
+  --color-danger: #B42318;
+  --color-danger-50: #FDECEA;
+}
+
+html, body, #root { height: 100%; }
+body {
+  @apply bg-paper text-ink antialiased;
+  font-feature-settings: "ss01";
+}
+
+:focus-visible { outline: 2px solid var(--color-teal); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* garis blueprint pada panel login */
+.blueprint {
+  background-color: var(--color-ink);
+  background-image:
+    linear-gradient(rgba(95, 179, 170, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 179, 170, 0.14) 1px, transparent 1px),
+    linear-gradient(rgba(95, 179, 170, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 179, 170, 0.06) 1px, transparent 1px);
+  background-size: 96px 96px, 96px 96px, 16px 16px, 16px 16px;
+}
+
+/* tampilan markdown di preview */
+.prose-cms { line-height: 1.7; color: var(--color-ink); max-width: 72ch; }
+.prose-cms h1 { font-size: 1.6rem; font-weight: 700; margin: 1.2em 0 .5em; }
+.prose-cms h2 { font-size: 1.35rem; font-weight: 700; margin: 1.2em 0 .5em; }
+.prose-cms h3, .prose-cms h4 { font-size: 1.1rem; font-weight: 600; margin: 1.1em 0 .4em; }
+.prose-cms p { margin: .7em 0; }
+.prose-cms ul { list-style: disc; padding-left: 1.4em; margin: .6em 0; }
+.prose-cms ol { list-style: decimal; padding-left: 1.4em; margin: .6em 0; }
+.prose-cms a { color: var(--color-teal); text-decoration: underline; }
+.prose-cms img { border-radius: 8px; max-width: 100%; margin: 1em 0; }
+.prose-cms blockquote { border-left: 3px solid var(--color-teal-200); padding-left: 1em; color: var(--color-muted); }
+.prose-cms code { background: var(--color-paper); padding: .1em .35em; border-radius: 4px; font-size: .9em; }
