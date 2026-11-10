@@ -1,6 +1,8 @@
 import axios, { AxiosError } from 'axios';
 
 export const API_URL = (import.meta.env.VITE_API_URL ?? 'http://localhost:4000').replace(/\/$/, '');
+/** URL publik folder upload (pengganti awalan /uploads); default <API_URL>/uploads */
+export const ASSET_URL = (import.meta.env.VITE_ASSET_URL || `${API_URL}/uploads`).replace(/\/$/, '');
 export const SITE_URL = (import.meta.env.VITE_SITE_URL ?? '').replace(/\/$/, '');
 const TOKEN_KEY = 'umira_cms_token';
 
@@ -41,12 +43,12 @@ export function errorMessage(err: unknown): string {
 
 /**
  * Ubah path file menjadi URL yang bisa ditampilkan:
- *  - /uploads/...  → file di backend CMS
+ *  - /uploads/...  → file CMS (ASSET_URL, mis. Nginx/CDN)
  *  - /images/...   → file statis website Next.js
  */
 export function assetUrl(path?: string | null): string {
   if (!path) return '';
   if (/^(https?:)?\/\//.test(path) || path.startsWith('data:') || path.startsWith('blob:')) return path;
-  if (path.startsWith('/uploads/')) return `${API_URL}${path}`;
+  if (path.startsWith('/uploads/')) return `${ASSET_URL}${path.slice('/uploads'.length)}`;
   return SITE_URL ? `${SITE_URL}${path.startsWith('/') ? '' : '/'}${path}` : path;
 }
